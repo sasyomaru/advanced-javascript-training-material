@@ -22,27 +22,23 @@
         console.log('Hi, I\'m a painter. My name is ' + this.name + '.');
     };
 
-    function PersonFactory() {}
-    PersonFactory.prototype.createPerson = function() {
-        return new Person();
-    };
-    PersonFactory.prototype.giveMeAPerson = function(name) {
-        var person = this.createPerson();
-        person.setName(name);
-        return person;
+    var personFactory = {
+        createPerson: function() {
+            return new Person();
+        },
+        giveMeAPerson: function(name) {
+            var person = this.createPerson();
+            person.setName(name);
+            return person;
+        }
     };
 
-    function PainterFactory() {
-        PersonFactory.call(this);
-    }
-    PainterFactory.prototype = Object.create(PersonFactory.prototype);
-    PainterFactory.prototype.createPerson = function() {
+    var painterFactory = Object.create(personFactory);
+    painterFactory.createPerson = function() {
         return new Painter();
     };
 
-    var personFactory = new PersonFactory();
     var ordinaryJack = personFactory.giveMeAPerson('Jack');
-    var painterFactory = new PainterFactory();
     var painterJack = painterFactory.giveMeAPerson('Jack');
 
     console.log('An ordinary Jack is speaking ...');
@@ -78,29 +74,28 @@
         console.log('Hi, I\'m a noble. My name is ' + this.name + '.');
     };
 
-    function CommonDramaFactory() {}
-    CommonDramaFactory.prototype.createJack = function() {
-        return new Person('Jack');
+    var commonDrama = {
+        createJack: function() {
+            return new Person('Jack');
+        },
+        createRose: function() {
+            return new Person('Rose');
+        }
     };
-    CommonDramaFactory.prototype.createRose = function() {
-        return new Person('Rose');
+    var titanic = {
+        createJack: function() {
+            return new Painter('Jack');
+        },
+        createRose: function() {
+            return new Noble('Rose');
+        }
     };
 
-    function TitanicFactory() {}
-    TitanicFactory.prototype.createJack = function() {
-        return new Painter('Jack');
-    };
-    TitanicFactory.prototype.createRose = function() {
-        return new Noble('Rose');
-    };
-
-    var commonDramaFactory = new CommonDramaFactory();
     console.log('In a common drama, the lines are ...');
-    commonDramaFactory.createJack().speak();
-    commonDramaFactory.createRose().speak();
+    commonDrama.createJack().speak();
+    commonDrama.createRose().speak();
 
-    var titanicFactory = new TitanicFactory();
     console.log('In Titanic, the lines are ...');
-    titanicFactory.createJack().speak();
-    titanicFactory.createRose().speak();
+    titanic.createJack().speak();
+    titanic.createRose().speak();
 })();

@@ -3,46 +3,46 @@
 // An simple IIFE (immediately-invoked functional expression)
 (function() {
     console.log('-------------------------Example on IIFE-------------------------');
-    var variableWithinIIFE = {};
-    console.log('Can access variable within IIFE: ' +
-        (variableWithinIIFE !== undefined));
+    var myMoney = 20;
+    console.log('Can access myMoney within IIFE: ' +
+        (myMoney !== undefined));
 })();
 
-// This will cause error as variableWithinIIFE can't be accessed out of IIFE.
-// console.log('Can access variable out of IIFE: ' +
-//     (variableWithinIIFE !== undefined));
+// This will cause error as myMoney can't be accessed out of IIFE.
+// console.log('Can access myMoney out of IIFE: ' +
+//     (myMoney !== undefined));
 
 // An example of module made using IIFE
 (function() {
     console.log('-------------------------Example on module made using IIFE-------------------------');
-    var module = (function() {
-        var privateField = 0;
+    var wallet = (function() {
+        var myMoney = 0;
 
-        function privateMethod() {
+        function privateCheckMoney() {
             console.log('Can access private field within private method: ' +
-                (privateField !== undefined));
+                (myMoney !== undefined));
         }
 
-        function publicIncrementValue() {
+        function publicIncrementMoney() {
             console.log('Can access private field within public method: ' +
-                (privateField !== undefined));
-            privateField++;
+                (myMoney !== undefined));
+            myMoney++;
         }
-        function publicGetValue() {
-            console.log('"getValue" will call private method');
-            privateMethod();
-            return privateField;
+        function publicCountMoney() {
+            console.log('"countMoney" will call private method');
+            privateCheckMoney();
+            return myMoney;
         }
 
         return {
-            incrementValue: publicIncrementValue,
-            getValue: publicGetValue
+            incrementMoney: publicIncrementMoney,
+            countMoney: publicCountMoney
         };
     })();
 
     console.log('Calling addValue ...');
-    module.incrementValue();
-    console.log('Calling getValue ...');
-    var value = module.getValue();
+    wallet.incrementMoney();
+    console.log('Calling countMoney ...');
+    var value = wallet.countMoney();
     console.log('Value after increment is: ' + value);
 })();

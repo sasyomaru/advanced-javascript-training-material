@@ -6,10 +6,10 @@
     function createWallet() {
         var money = 0;
         return {
-            increment: function increment() {
+            increment: function() {
                 money++;
             },
-            count: function count() {
+            count: function() {
                 return money;
             }
         };

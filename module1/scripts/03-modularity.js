@@ -12,17 +12,17 @@
         }
 
         return {
-            incrementMoney: function incrementMoney() {
+            incrementMoney: function() {
                 console.log('Can access private field within public method: ' +
                     (myMoney !== undefined));
                 myMoney++;
             },
-            countMoney: function countMoney() {
+            countMoney: function() {
                 console.log('"countMoney" will call private method');
                 privateCheckMoney();
                 return myMoney;
             },
-            name: 'Cucci',
+            name: 'Gucci',
             readName: function() {
                 console.log('Can access public field with public method: ' +
                     (this.name !== undefined));

@@ -9,13 +9,13 @@
     // The speak function is written twice
     var jack = {
         name: 'Jack',
-        speak: function personSpeak() {
+        speak: function() {
             console.log('Hi, my name is ' + this.name);
         }
     };
     var rose = {
         name: 'Rose',
-        speak: function personSpeak() {
+        speak: function() {
             console.log('Hi, my name is ' + this.name);
         }
     };
@@ -55,7 +55,7 @@
 
     var jack = {
         name: 'Jack',
-        speak: function personSpeak() {
+        speak: function() {
             console.log('Hi, my name is ' + this.name);
         }
     };
@@ -74,7 +74,7 @@
 
     var jack = {
         name: 'Jack',
-        speak: function personSpeak() {
+        speak: function() {
             console.log('Hi, my name is ' + this.name);
         }
     };
@@ -86,7 +86,7 @@
     console.log('Rose is speaking ...');
     rose.speak();
 
-    jack.stand = function stand() {
+    jack.stand = function() {
         console.log(this.name + ' is standing ...');
     };
     rose.stand();
@@ -98,7 +98,7 @@
 
     function Person(name) {
         this.name = name;
-        this.speak = function personSpeak() {
+        this.speak = function() {
             console.log('Hi, my name is ' + this.name);
         };
     }
@@ -118,7 +118,7 @@
     function Person(name) {
         this.name = name;
     }
-    Person.prototype.speak = function personSpeak() {
+    Person.prototype.speak = function() {
         console.log('Hi, my name is ' + this.name);
     };
     var jack = new Person('Jack');
@@ -139,7 +139,7 @@
     function Person(name) {
         this.name = name;
     }
-    Person.prototype.speak = function personSpeak() {
+    Person.prototype.speak = function() {
         console.log('Hi, my name is ' + this.name);
     };
 
@@ -147,7 +147,7 @@
         Person.call(this, name);
     }
     Painter.prototype = Object.create(Person.prototype);
-    Painter.prototype.paint = function paint() {
+    Painter.prototype.paint = function() {
         console.log(this.name + ' is painting ...');
     };
 
@@ -155,7 +155,7 @@
         Person.call(this, name);
     }
     Model.prototype = Object.create(Person.prototype);
-    Model.prototype.stand = function stand() {
+    Model.prototype.stand = function() {
         console.log(this.name + ' is standing as a model ...');
     };
     var jack = new Painter('Jack');

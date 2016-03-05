@@ -10,13 +10,13 @@
     var jack = {
         name: 'Jack',
         speak: function() {
-            console.log('Hi, my name is ' + this.name);
+            console.log('Hi, my name is ' + this.name + '.');
         }
     };
     var rose = {
         name: 'Rose',
         speak: function() {
-            console.log('Hi, my name is ' + this.name);
+            console.log('Hi, my name is ' + this.name + '.');
         }
     };
 
@@ -32,7 +32,7 @@
 
     // The speak function is written only once
     function personSpeak() {
-        console.log('Hi, my name is ' + this.name);
+        console.log('Hi, my name is ' + this.name + '.');
     }
     var jack = {
         name: 'Jack',
@@ -56,7 +56,7 @@
     var jack = {
         name: 'Jack',
         speak: function() {
-            console.log('Hi, my name is ' + this.name);
+            console.log('Hi, my name is ' + this.name + '.');
         }
     };
     var rose = Object.create(jack);
@@ -75,7 +75,7 @@
     var jack = {
         name: 'Jack',
         speak: function() {
-            console.log('Hi, my name is ' + this.name);
+            console.log('Hi, my name is ' + this.name + '.');
         }
     };
     var rose = Object.create(jack);
@@ -99,7 +99,7 @@
     function Person(name) {
         this.name = name;
         this.speak = function() {
-            console.log('Hi, my name is ' + this.name);
+            console.log('Hi, my name is ' + this.name + '.');
         };
     }
     var jack = new Person('Jack');
@@ -140,7 +140,7 @@
         this.name = name;
     }
     Person.prototype.speak = function() {
-        console.log('Hi, my name is ' + this.name);
+        console.log('Hi, my name is ' + this.name + '.');
     };
 
     function Painter(name) {

@@ -68,6 +68,30 @@
     rose.speak();
 })();
 
+// Prototype can be changed after relationship is setup
+(function() {
+    console.log('-------------------------Example on changing prototype after setting up relationship-------------------------');
+
+    var jack = {
+        name: 'Jack',
+        speak: function personSpeak() {
+            console.log('Hi, my name is ' + this.name);
+        }
+    };
+    var rose = Object.create(jack);
+    rose.name = 'Rose';
+
+    console.log('Jack is speaking ...');
+    jack.speak();
+    console.log('Rose is speaking ...');
+    rose.speak();
+
+    jack.stand = function stand() {
+        console.log(this.name + ' is standing ...');
+    };
+    rose.stand();
+})();
+
 // Reuse by constructor
 (function() {
     console.log('-------------------------Example on constructor-------------------------');
@@ -123,7 +147,7 @@
         Person.call(this, name);
     }
     Painter.prototype = Object.create(Person.prototype);
-    Painter.prototype.paint = function() {
+    Painter.prototype.paint = function paint() {
         console.log(this.name + ' is painting ...');
     };
 
@@ -131,8 +155,8 @@
         Person.call(this, name);
     }
     Model.prototype = Object.create(Person.prototype);
-    Model.prototype.stand = function() {
-        console.log(this.name + ' is standing ...');
+    Model.prototype.stand = function stand() {
+        console.log(this.name + ' is standing as a model ...');
     };
     var jack = new Painter('Jack');
     var rose = new Model('Rose');

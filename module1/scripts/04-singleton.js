@@ -1,5 +1,35 @@
 "use strict";
 
+// Singleton without lazy initialization
+(function() {
+    console.log('-------------------------Example on singleton without lazy initialization-------------------------');
+    var Sun = (function() {
+        var sunInstance = {
+            shiningCount: 0,
+            shine: function() {
+                console.log('Sun is shining ...');
+                this.shiningCount++;
+            },
+            getShiningCount: function() {
+                return this.shiningCount;
+            }
+        };
+
+        return {
+            getInstance: function getInstance() {
+                return sunInstance;
+            }
+        };
+    })();
+
+    var sun = Sun.getInstance();
+    var anotherSun = Sun.getInstance();
+    console.log('Are there two suns: ' + (sun !== anotherSun));
+    sun.shine();
+    sun.shine();
+    console.log('Count in the other sun: ' + anotherSun.getShiningCount());
+})();
+
 // Singleton design pattern
 (function() {
     console.log('-------------------------Example on singleton-------------------------');

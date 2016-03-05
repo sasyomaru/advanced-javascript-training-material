@@ -151,27 +151,26 @@
         console.log(this.name + ' is painting ...');
     };
 
-    function Model(name) {
+    function Noble(name) {
         Person.call(this, name);
     }
-    Model.prototype = Object.create(Person.prototype);
-    Model.prototype.stand = function() {
-        console.log(this.name + ' is standing as a model ...');
+    Noble.prototype = Object.create(Person.prototype);
+    Noble.prototype.speak = function() {
+        console.log(this.name + ' is speaking in a noble way ...');
     };
     var jack = new Painter('Jack');
-    var rose = new Model('Rose');
+    var rose = new Noble('Rose');
 
     console.log('Jack is a person: ' + (jack instanceof Person));
     console.log('Jack is a painter: ' + (jack instanceof Painter));
-    console.log('Jack is a model: ' + (jack instanceof Model));
+    console.log('Jack is a noble: ' + (jack instanceof Noble));
     jack.paint();
     console.log('Jack is speaking ...');
     jack.speak();
 
     console.log('Rose is a person: ' + (rose instanceof Person));
     console.log('Rose is a painter: ' + (rose instanceof Painter));
-    console.log('Rose is a model: ' + (rose instanceof Model));
-    rose.stand();
+    console.log('Rose is a noble: ' + (rose instanceof Noble));
     console.log('Rose is speaking ...');
     rose.speak();
 })();

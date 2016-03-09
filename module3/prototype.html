@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Examples for MV* frameworks</title>
+    <link rel="stylesheet" href="styles/foundation.css">
+    <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+    <section class="app">
+        <header>
+            <h1>My TODOs</h1>
+        </header>
+        <input class="new-todo" placeholder="What needs to be done?" autofocus>
+        <ul class="todo-list">
+            <li class="completed">
+                <div class="view">
+                    <input class="toggle" type="checkbox" checked>
+                    <label>Complete task</label>
+                    <button class="remove"><span class="sr-only">Remove</span></button>
+                </div>
+                <input type="text" class="edit" value="Complete task">
+            </li>
+            <li>
+                <div class="view">
+                    <input class="toggle" type="checkbox">
+                    <label>Todo task</label>
+                    <button class="remove"><span class="sr-only">Remove</span></button>
+                </div>
+                <input type="text" class="edit" value="Todo task">
+            </li>
+            <li class="editing">
+                <div class="view">
+                    <input class="toggle" type="checkbox">
+                    <label>Task being edited</label>
+                    <button class="remove"><span class="sr-only">Remove</span></button>
+                </div>
+                <input type="text" class="edit" value="Task being edited">
+            </li>
+        </ul>
+        <footer>
+            <span class="todo-count">1 item left</span>
+            <ul class="filters">
+                <li><a class="selected" href="#/">All</a></li>
+                <li><a href="#/active">Active</a></li>
+                <li><a href="#/completed">Completed</a></li>
+            </ul>
+        </footer>
+    </section>
+</body>
+</html>

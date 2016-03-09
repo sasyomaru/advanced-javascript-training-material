@@ -1,0 +1,184 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.4rem;
+    font-weight: 300;
+}
+
+.sr-only {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+.app {
+    position: relative;
+    max-width: 21.25rem;
+    min-width: 18.75rem;
+    margin: 6.25rem auto 1.25rem auto;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+header {
+    position: absolute;
+    top: -6.125rem;
+    width: 100%;
+}
+
+header h1 {
+    font-size: 4rem;
+    color: rgba(175, 47, 47, 0.3);
+    font-weight: 100;
+    text-align: center;
+}
+
+.new-todo, .edit, .todo-list label {
+    font-size: 1.5rem;
+    line-height: 1.4em;
+}
+
+.new-todo, .edit {
+    margin: 0;
+}
+
+.app .new-todo {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3.75rem;
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+    outline: none;
+    border: none;
+}
+
+.todo-list {
+    border-top: 1px solid #e6e6e6;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.todo-list li {
+    position: relative;
+    border-bottom: 1px solid #ededed;
+}
+
+.todo-list .editing .view {
+    display: none;
+}
+
+.todo-list .toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+}
+.todo-list .toggle:after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
+}
+.todo-list .completed .toggle:after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+}
+
+.todo-list label {
+    white-space: pre-line;
+    word-break: break-all;
+    padding: 0.9375rem 3.75rem 0.9375rem 0.9375rem;
+    margin-left: 2.8125rem;
+    line-height: 1.2;
+    transition: color 0.4s;
+    display: block;
+    font-weight: 300;
+}
+.todo-list .completed label {
+    color: #d9d9d9;
+    text-decoration: line-through;
+}
+
+.todo-list .remove {
+    display: none;
+    position: absolute;
+    right: 0.625rem;
+    top: 0;
+    bottom: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: auto 0;
+    font-size: 1.875rem;
+    color: #cc9a9a;
+    transition: color 0.2s ease-out;
+    outline: none;
+}
+.todo-list .remove:hover {
+    color: #af5b5e;
+}
+.todo-list .remove:after {
+    content: '×';
+}
+.todo-list li:hover .remove {
+    display: block;
+}
+
+.todo-list .edit {
+    display: none;
+}
+.todo-list .editing .edit {
+    display: block;
+    margin: 0 0 0 2.6875rem;
+    padding: 0.8125rem 1.0625rem 0.75rem 1.0625rem;
+    width: inherit;
+    border: 1px solid #999;
+    height: inherit;
+}
+
+footer {
+    position: relative;
+    height: 3.125rem;
+    color: #777;
+    text-align: center;
+    border-top: 1px solid #e6e6e6;
+    padding: 0.625rem 0.9375rem;
+}
+
+footer:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 3.125rem;
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+footer .todo-count {
+    float: left;
+    text-align: left;
+}
+
+.filters {
+    float: right;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.filters li {
+    display: inline;
+}
+
+.filters li a {
+    margin: 0.1875rem;
+    padding: 0.1875rem 0.25rem;
+    border: 1px solid transparent;;
+    border-radius: 3px;
+}
+
+.filters li a.selected {
+    border-color: rgba(175, 47, 47, 0.2);
+}
+.filters li a:hover {
+    border-color: rgba(175, 47, 47, 0.1);
+}

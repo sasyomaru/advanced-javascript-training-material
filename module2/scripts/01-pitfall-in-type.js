@@ -1,7 +1,4 @@
-// This file is your play ground. Feel free to do anything you want
-(function() {
-
-})();
+"use strict";
 
 // No explicit type
 (function() {
@@ -39,33 +36,4 @@
     console.log('false == "0": ' + (false == '0'));
     console.log('0 == "": ' + (0 == ''));
     console.log('0 == "0": ' + (0 == '0'));
-})();
-
-// An example of iterate keys
-(function() {
-    console.log('-------------------------Example on iterate keys-------------------------');
-    var baseObj = { keyInBaseObject: 'valueInBaseObject' };
-    Object.defineProperty(baseObj, 'nonEnumerableFieldInBaseObj', {
-        value: 'nonEnumerableValueInChildObject',
-        writable: true
-    });
-    var childObj = Object.create(baseObj);
-    childObj.keyInChildObj = 'valueInChildObject';
-    Object.defineProperty(childObj, 'nonEnumerableFieldInChildObj', {
-        value: 'nonEnumerableValueInChildObject',
-        writable: true
-    });
-
-    console.log('Keys found via Object.keys ... ');
-    console.log(Object.keys(childObj));
-
-    console.log('Keys found via getOwnPropertyNames ...');
-    console.log(Object.getOwnPropertyNames(childObj));
-
-    console.log('Keys found via (for ... in) ...');
-    var keysFromForIn = [];
-    for(var key in childObj) {
-        keysFromForIn.push(key);
-    }
-    console.log(keysFromForIn);
 })();

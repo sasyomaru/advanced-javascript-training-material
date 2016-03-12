@@ -17,7 +17,9 @@
         if (Math.random() < 0.5) {
             console.log('Rose hates you!');
         } else {
-            this.source.speak();
+            var args = Array.prototype.slice.call(arguments, 0);
+            var returnValue = this.source.speak.apply(this.source, args);
+            return returnValue;
         }
     };
 

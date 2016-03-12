@@ -16,8 +16,10 @@
     }
     SweetDecorator.prototype.speak = function() {
         console.log('[ Look with love ... ]');
-        this.person.speak();
+        var args = Array.prototype.slice.call(arguments, 0);
+        var returnValue = this.person.speak.apply(this.person, args);
         console.log('You are so beautiful!');
+        return returnValue;
     };
 
     var loverJack = new SweetDecorator(ordinaryJack);

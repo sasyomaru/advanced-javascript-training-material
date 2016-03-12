@@ -10,6 +10,10 @@ body {
     left: -9999px;
 }
 
+#body.row .container {
+    padding: 1rem 0.25rem;
+}
+
 .app {
     position: relative;
     max-width: 21.25rem;
@@ -31,12 +35,12 @@ header h1 {
     text-align: center;
 }
 
-.new-todo, .edit, .todo-list label {
+.new-todo, .editor, .todo-list label {
     font-size: 1.5rem;
     line-height: 1.4em;
 }
 
-.new-todo, .edit {
+.new-todo, .editor {
     margin: 0;
 }
 
@@ -126,9 +130,11 @@ header h1 {
 }
 .todo-list .editing .edit {
     display: block;
-    margin: 0 0 0 2.6875rem;
+    margin: 0 0.25rem 0 2.6875rem;
+}
+
+.todo-list .editor {
     padding: 0.8125rem 1.0625rem 0.75rem 1.0625rem;
-    width: inherit;
     border: 1px solid #999;
     height: inherit;
 }

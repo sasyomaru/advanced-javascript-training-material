@@ -50,18 +50,18 @@
     });
 
     // Define controller for model
-    function ToDoItemController(model) {
-        this.model = model;
-    };
-    ToDoItemController.prototype.toggleCompleted = function() {
-        this.model.toggleCompleted();
-    };
-    ToDoItemController.prototype.updateTitle = function(newTitle) {
-        this.model.updateTitle(newTitle);
-    };
-    ToDoItemController.prototype.destroy = function() {
-        this.model.destroy();
-    };
+    // function ToDoItemController(model) {
+    //     this.model = model;
+    // };
+    // ToDoItemController.prototype.toggleCompleted = function() {
+    //     this.model.toggleCompleted();
+    // };
+    // ToDoItemController.prototype.updateTitle = function(newTitle) {
+    //     this.model.updateTitle(newTitle);
+    // };
+    // ToDoItemController.prototype.destroy = function() {
+    //     this.model.destroy();
+    // };
 
     // Define view for model
     var ToDoItemView = Backbone.View.extend({
@@ -80,7 +80,7 @@
             this.listenTo(this.model, 'change', this.render);
             this.listenTo(this.model, 'destroy', this.remove);
 
-            this.controller = new ToDoItemController(this.model);
+            // this.controller = new ToDoItemController(this.model);
         },
         //Re-render
         render: function() {
@@ -122,10 +122,12 @@
 
         // Call controller
         toggleCompleted: function() {
-            this.controller.toggleCompleted();
+            // this.controller.toggleCompleted();
+            this.model.toggleCompleted();
         },
         destroy: function() {
-            this.controller.destroy();
+            // this.controller.destroy();
+            this.model.destroy();
         },
 
         update: function() {
@@ -133,7 +135,8 @@
 
             if (this.isEditing) {
                 this.setEditing(false);
-                this.controller.updateTitle(value);
+                // this.controller.updateTitle(value);
+                this.model.updateTitle(value);
             }
         },
         updateOnEnter: function(e) {
@@ -144,12 +147,12 @@
     });
 
     // Define controller for app
-    function ToDoAppController(model) {
-        this.model = model;
-    };
-    ToDoAppController.prototype.createNewToDo = function(title) {
-        this.model.createNewItem(title);
-    };
+    // function ToDoAppController(model) {
+    //     this.model = model;
+    // };
+    // ToDoAppController.prototype.createNewToDo = function(title) {
+    //     this.model.createNewItem(title);
+    // };
 
     // Define view for app
     var ToDoAppView = Backbone.View.extend({
@@ -171,7 +174,7 @@
             this.listenTo(this.model, 'all', _.debounce(this.render, 0));
 
             this.itemViews = [];
-            this.controller = new ToDoAppController(this.model);
+            // this.controller = new ToDoAppController(this.model);
 
             this.model.fetch({ reset: true });
         },
@@ -220,6 +223,7 @@
                 .addClass('selected');
         },
 
+        // View API
         findViewIndex: function(todoItem) {
             for(var index = 0; index < this.itemViews.length; index++) {
                 if (this.itemViews[index].model === todoItem) {
@@ -257,11 +261,14 @@
                 itemView.setVisible(filterFunc ? filterFunc(itemView.model) : true);
             });
         },
+
+        // Call controller
         createOnEnter: function(e) {
             if (e.which === ENTER_KEY) {
                 var title = this.$newTitleInput.val().trim();
                 if (title) {
-                    this.controller.createNewToDo(title);
+                    // this.controller.createNewToDo(title);
+                    this.model.createNewItem(title);
                     this.$newTitleInput.val('');
                 }
             }

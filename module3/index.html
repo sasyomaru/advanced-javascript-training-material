@@ -8,52 +8,34 @@
 </head>
 <body class="row collapse" id="body">
     <div class="container columns small-4">
-        <section class="app">
+        <section class="app backbone-app">
             <header>
                 <h1>BB TODOs</h1>
             </header>
             <input class="new-todo" placeholder="What needs to be done?" autofocus>
             <ul class="todo-list">
-                <li class="completed">
-                    <div class="view">
-                        <input class="toggle" type="checkbox" checked>
-                        <label>Complete task</label>
-                        <button class="remove"><span class="sr-only">Remove</span></button>
-                    </div>
-                    <div class="edit">
-                        <input type="text" class="editor" value="Complete task">
-                    </div>
-                </li>
-                <li>
-                    <div class="view">
-                        <input class="toggle" type="checkbox">
-                        <label>Todo task</label>
-                        <button class="remove"><span class="sr-only">Remove</span></button>
-                    </div>
-                    <div class="edit">
-                        <input type="text" class="editor" value="Todo task">
-                    </div>
-                </li>
-                <li class="editing">
-                    <div class="view">
-                        <input class="toggle" type="checkbox">
-                        <label>Task being edited</label>
-                        <button class="remove"><span class="sr-only">Remove</span></button>
-                    </div>
-                    <div class="edit">
-                        <input type="text" class="editor" value="Task being edited">
-                    </div>
-                </li>
             </ul>
             <footer>
-                <span class="todo-count">1 item left</span>
-                <ul class="filters">
-                    <li><a class="selected" href="#/">All</a></li>
-                    <li><a href="#/active">Active</a></li>
-                    <li><a href="#/completed">Completed</a></li>
-                </ul>
             </footer>
         </section>
+        <script type="text/template" id="backbone-item-template">
+            <div class="view">
+                <input class="toggle" type="checkbox" <%= completed ? 'checked': '' %>>
+                <label><%- title %></label>
+                <button class="remove"><span class="sr-only">Remove</span></button>
+            </div>
+            <div class="edit">
+                <input type="text" class="editor" value="<%- title %>">
+            </div>
+        </script>
+        <script type="text/template" id="backbone-footer-template">
+            <span class="todo-count"><%= remaining %> <%= remaining === 1 ? 'item' : 'items' %> left</span>
+            <ul class="filters">
+                <li><a class="selected" href="#/">All</a></li>
+                <li><a href="#/active">Active</a></li>
+                <li><a href="#/completed">Completed</a></li>
+            </ul>
+        </script>
     </div>
     <div class="container columns small-4">
         <section class="app">
@@ -158,6 +140,7 @@
     <script src="scripts/underscore-1.8.3.src.js"></script>
     <script src="scripts/backbone-1.3.1-src.js"></script>
     <script src="scripts/backbone.localStorage-1.1.16-src.js"></script>
+    <script src="scripts/backbone-app.js"></script>
 
     <!-- Libraries for Knockout App -->
     <script src="scripts/knockout-3.4.0-src.js"></script>

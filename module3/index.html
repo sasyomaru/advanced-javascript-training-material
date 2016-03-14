@@ -21,6 +21,7 @@
         <script type="text/template" id="backbone-item-template">
             <div class="view">
                 <input class="toggle" type="checkbox" <%= completed ? 'checked': '' %>>
+                <span class="checkbox-icon"></span>
                 <label><%- title %></label>
                 <button class="remove"><span class="sr-only">Remove</span></button>
             </div>
@@ -38,52 +39,35 @@
         </script>
     </div>
     <div class="container columns small-4">
-        <section class="app">
+        <section class="app knockout-app">
             <header>
                 <h1>KO TODOs</h1>
             </header>
-            <input class="new-todo" placeholder="What needs to be done?" autofocus>
-            <ul class="todo-list">
-                <li class="completed">
-                    <div class="view">
-                        <input class="toggle" type="checkbox" checked>
-                        <label>Complete task</label>
-                        <button class="remove"><span class="sr-only">Remove</span></button>
-                    </div>
-                    <div class="edit">
-                        <input type="text" class="editor" value="Complete task">
-                    </div>
-                </li>
-                <li>
-                    <div class="view">
-                        <input class="toggle" type="checkbox">
-                        <label>Todo task</label>
-                        <button class="remove"><span class="sr-only">Remove</span></button>
-                    </div>
-                    <div class="edit">
-                        <input type="text" class="editor" value="Todo task">
-                    </div>
-                </li>
-                <li class="editing">
-                    <div class="view">
-                        <input class="toggle" type="checkbox">
-                        <label>Task being edited</label>
-                        <button class="remove"><span class="sr-only">Remove</span></button>
-                    </div>
-                    <div class="edit">
-                        <input type="text" class="editor" value="Task being edited">
-                    </div>
-                </li>
+            <input class="new-todo" placeholder="What needs to be done?"
+                   data-bind="value: currentTitle, valueUpdate: 'afterkeydown', enterKey: create" autofocus>
+            <ul class="todo-list" data-bind="visible: toDoCollectionViewModel().length, foreach: toDoCollectionViewModel">
+                <li data-bind="css: { completed: toDoItem.completed, editing: editing, hidden: isHidden }, template: { name: 'knockout-item-template', data: $data }"></li>
             </ul>
-            <footer>
-                <span class="todo-count">1 item left</span>
+            <footer data-bind="visible: toDoCollectionViewModel().length">
+                <span class="todo-count" data-bind="text: remainingLabel"></span>
                 <ul class="filters">
-                    <li><a class="selected" href="#/">All</a></li>
-                    <li><a href="#/active">Active</a></li>
-                    <li><a href="#/completed">Completed</a></li>
+                    <li><a data-bind="css: { selected: filter() == '' }" href="#/">All</a></li>
+                    <li><a data-bind="css: { selected: filter() == 'active' }" href="#/active">Active</a></li>
+                    <li><a data-bind="css: { selected: filter() == 'completed' }" href="#/completed">Completed</a></li>
                 </ul>
             </footer>
         </section>
+        <script type="text/template" id="knockout-item-template">
+            <div class="view">
+                <input class="toggle" type="checkbox" data-bind="checked: toDoItem.completed">
+                <span class="checkbox-icon"></span>
+                <label data-bind="text: toDoItem.title, event: { dblclick: edit }"></label>
+                <button class="remove" data-bind="click: destroy"><span class="sr-only">Remove</span></button>
+            </div>
+            <div class="edit">
+                <input type="text" class="editor" data-bind="value: toDoItem.title, valueUpdate: 'afterkeydown', selectAndFocus: editing, enterKey: update, escapeKey: revert, event: { blur: update }">
+            </div>
+        </script>
     </div>
     <div class="container columns small-4">
         <section class="app">
@@ -95,6 +79,7 @@
                 <li class="completed">
                     <div class="view">
                         <input class="toggle" type="checkbox" checked>
+                        <span class="checkbox-icon"></span>
                         <label>Complete task</label>
                         <button class="remove"><span class="sr-only">Remove</span></button>
                     </div>
@@ -105,6 +90,7 @@
                 <li>
                     <div class="view">
                         <input class="toggle" type="checkbox">
+                        <span class="checkbox-icon"></span>
                         <label>Todo task</label>
                         <button class="remove"><span class="sr-only">Remove</span></button>
                     </div>
@@ -115,6 +101,7 @@
                 <li class="editing">
                     <div class="view">
                         <input class="toggle" type="checkbox">
+                        <span class="checkbox-icon"></span>
                         <label>Task being edited</label>
                         <button class="remove"><span class="sr-only">Remove</span></button>
                     </div>
@@ -145,6 +132,7 @@
     <!-- Libraries for Knockout App -->
     <script src="scripts/knockout-3.4.0-src.js"></script>
     <script src="scripts/director-1.2.6-src.js"></script>
+    <script src="scripts/knockout-app.js"></script>
 
     <!-- Libraries for Angular App -->
     <script src="scripts/angular-1.5.0-src.js"></script>

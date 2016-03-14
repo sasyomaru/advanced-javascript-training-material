@@ -2,6 +2,8 @@
 
 (function() {
     // Some constants
+    // "todos-backbone" is just a hard-code id for storage
+    var LOCAL_STORAGE_KEY = 'todos-backbone';
     var ENTER_KEY = 13;
     var ESC_KEY = 27;
 
@@ -33,9 +35,8 @@
         // The followings are overrides default value
         model: ToDoItem,
         // This is used by Backbone localStorage Adapter
-        // "todos-backbone" is just a hard-code id for storage
         initialize: function() {
-            this.localStorage = new Backbone.LocalStorage('todos-backbone');
+            this.localStorage = new Backbone.LocalStorage(LOCAL_STORAGE_KEY);
         },
 
         // The followings are functions defined for app

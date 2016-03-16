@@ -47,7 +47,7 @@
     console.log('-------------------------Example on iterate keys-------------------------');
     var baseObj = { keyInBaseObject: 'valueInBaseObject' };
     Object.defineProperty(baseObj, 'nonEnumerableFieldInBaseObj', {
-        value: 'nonEnumerableValueInChildObject',
+        value: 'nonEnumerableValueInBaseObject',
         writable: true
     });
     var childObj = Object.create(baseObj);

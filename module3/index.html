@@ -69,56 +69,39 @@
             </div>
         </script>
     </div>
-    <div class="container columns small-4">
-        <section class="app">
+    <div class="container columns small-4" ng-app="ToDoAngular">
+        <section class="app" ng-view></section>
+        <script type="text/ng-template" id="angular-app-template.html">
             <header>
                 <h1>NG TODOs</h1>
             </header>
-            <input class="new-todo" placeholder="What needs to be done?" autofocus>
+            <input class="new-todo" placeholder="What needs to be done?" ng-model="currentTitle"
+                   autofocus enter-handler="create()">
             <ul class="todo-list">
-                <li class="completed">
-                    <div class="view">
-                        <input class="toggle" type="checkbox" checked>
-                        <span class="checkbox-icon"></span>
-                        <label>Complete task</label>
-                        <button class="remove"><span class="sr-only">Remove</span></button>
-                    </div>
-                    <div class="edit">
-                        <input type="text" class="editor" value="Complete task">
-                    </div>
-                </li>
-                <li>
-                    <div class="view">
-                        <input class="toggle" type="checkbox">
-                        <span class="checkbox-icon"></span>
-                        <label>Todo task</label>
-                        <button class="remove"><span class="sr-only">Remove</span></button>
-                    </div>
-                    <div class="edit">
-                        <input type="text" class="editor" value="Todo task">
-                    </div>
-                </li>
-                <li class="editing">
-                    <div class="view">
-                        <input class="toggle" type="checkbox">
-                        <span class="checkbox-icon"></span>
-                        <label>Task being edited</label>
-                        <button class="remove"><span class="sr-only">Remove</span></button>
-                    </div>
-                    <div class="edit">
-                        <input type="text" class="editor" value="Task being edited">
-                    </div>
-                </li>
+                <li ng-repeat="toDoViewModel in toDoCollection"
+                    to-do-item="toDoViewModel"></li>
             </ul>
             <footer>
-                <span class="todo-count">1 item left</span>
+                <span class="todo-count" ng-bind="remainingLabel"></span>
                 <ul class="filters">
-                    <li><a class="selected" href="#/">All</a></li>
-                    <li><a href="#/active">Active</a></li>
-                    <li><a href="#/completed">Completed</a></li>
+                    <li><a ng-class="{ selected: filterString === '' }" href="#/">All</a></li>
+                    <li><a ng-class="{ selected: filterString === 'active' }" href="#/active">Active</a></li>
+                    <li><a ng-class="{ selected: filterString === 'completed' }" href="#/completed">Completed</a></li>
                 </ul>
             </footer>
-        </section>
+        </script>
+        <script type="text/ng-template" id="angular-item-template.html">
+            <div class="view">
+                <input class="toggle" type="checkbox" ng-model="itemViewModel.toDoItem.completed">
+                <span class="checkbox-icon"></span>
+                <label ng-bind="itemViewModel.toDoItem.title" ng-dblclick="edit()"></label>
+                <button class="remove" ng-click="destroy()"><span class="sr-only">Remove</span></button>
+            </div>
+            <div class="edit">
+                <input type="text" class="editor" ng-model="itemViewModel.toDoItem.title"
+                    select-and-focus="editing" enter-handler="update()" esc-handler="revert()" ng-blur="update()">
+            </div>
+        </script>
     </div>
     <!-- Common libraries for all framework -->
     <script src="scripts/jquery-2.2.1-src.js"></script>
@@ -137,5 +120,6 @@
     <!-- Libraries for Angular App -->
     <script src="scripts/angular-1.5.0-src.js"></script>
     <script src="scripts/angular-route-1.5.0-src.js"></script>
+    <script src="scripts/angular-app.js"></script>
 </body>
 </html>
